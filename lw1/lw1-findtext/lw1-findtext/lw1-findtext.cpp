@@ -3,6 +3,23 @@
 
 using namespace std;
 
+void FindStringInFile(ifstream & input, const string & searchStr, bool & stringWasFound)
+{
+	string curentString;
+	unsigned numberString = 1;
+
+	while (getline(input, curentString))
+	{
+		if (curentString.find(searchStr) != string::npos)
+		{
+		cout << numberString << endl;
+		stringWasFound = true;
+		}
+		++numberString; 
+	}
+
+}
+
 int main(int argc, char * argv[])
 {
 	if (argc != 3)
@@ -20,21 +37,12 @@ int main(int argc, char * argv[])
 		return 1;
 	}
 	string searchQuery = argv[2];
-	unsigned numberString = 1;
-	string curentString;
-	int forCheck = 1;
+	bool stringWasFound = false;
 	
-	while (getline(input, curentString))
-	{
-		if (curentString.find(searchQuery) != string::npos)
-		{
-			cout << numberString << endl;
-			++forCheck;
-		}
-		++numberString;
-	}
+	FindStringInFile(input, searchQuery, stringWasFound);
+	
 
-	if (forCheck == 1)
+	if (!stringWasFound)
 	{
 		cout << "According to this request, I found nothing " << endl;
 	}

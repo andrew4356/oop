@@ -17,7 +17,7 @@ bool ñheckingOnInteger(char *checkNumber)
 	}
 	return check;
 }
-
+   
 int main(int argc, char * argv[])
 {
 	if (argc != 2)

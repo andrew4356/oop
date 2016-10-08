@@ -49,4 +49,4 @@ int main(int argc, char * argv[])
 	}
 	cout << "Binary Number \n" << binaryNumberStr << endl;
 	return 0;
-}
+} 

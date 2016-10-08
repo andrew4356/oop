@@ -1,4 +1,5 @@
-#include "stdafx.h"
+
+#include <stdafx.h>
 #include <iostream>
 
 using namespace std;
@@ -35,7 +36,7 @@ int main(int argc, char * argv[])
 	int tenNumber = atoi(argv[1]);
 	string binaryNumberStr = "";
 	int binaryStringLength = 8 * sizeof(tenNumber);
-	for (int i = binaryStringLength; i >= 0; i--)
+	for (int i = binaryStringLength; i >= 0; --i)
 	{
 		if ((1 << i) & tenNumber)
 		{
@@ -46,6 +47,6 @@ int main(int argc, char * argv[])
 			binaryNumberStr = binaryNumberStr + "0";
 		}
 	}
-	cout << binaryNumberStr << endl;
+	cout << "Binary Number \n" << binaryNumberStr << endl;
 	return 0;
 }

@@ -27,22 +27,8 @@ string HtmlEncode(string const & currentStr)
 	return buffer;
 }
 
-int main(int argc, char * argv[])
+int main()
 {
-	if (argc != 2)
-	{
-		cout << "Invalid arguments count\n"
-			<< "Usage: HTML Encode.exe <input file>\n";
-		return 1;
-	}
-
-	ifstream input(argv[1]);
-
-	if (!input.is_open())
-	{
-		cout << "Failed to open " << argv[1] << " for reading\n";
-		return 1;
-	}
 
 	string currentStr = " ";
 
@@ -58,7 +44,7 @@ int main(int argc, char * argv[])
 	}*/
 	string timeStr;
 
-	while (getline(input, currentStr))
+	while (getline(cin, currentStr))
 	{
 		currentStr.swap(HtmlEncode(currentStr));
 		cout << currentStr <<  endl;

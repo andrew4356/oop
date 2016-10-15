@@ -5,7 +5,7 @@
 
 using namespace std;
 
-void ToBinary(unsigned num)
+void toBinary(unsigned num)
 {
 	string binaryNumberStr = "";
 	int binaryStringLength = 8 * sizeof(num);
@@ -24,7 +24,7 @@ void ToBinary(unsigned num)
 
 }
 
-bool ÑheckingOnInteger(char *checkNumber)
+bool ñheckingOnInteger(char *checkNumber)
 {
 	bool check = true;
 	while (*checkNumber)
@@ -46,7 +46,7 @@ int main(int argc, char * argv[])
 			<< "Usage: calcbits.exe <input number>\n";
 		return 1;
 	}
-	if (!ÑheckingOnInteger(argv[1]))
+	if (!ñheckingOnInteger(argv[1]))
 	{
 		cout << "input erorr" << endl;
 		return 1;
@@ -55,7 +55,7 @@ int main(int argc, char * argv[])
     unsigned number = atoi(argv[1]);
 	
 	cout << "Binary Number \n";
-	ToBinary(number);
+	toBinary(number);
 	cout << endl;
 	return 0;
 } 

@@ -5,7 +5,7 @@
 
 using namespace std;
 
-void ToBinary(unsigned num)
+string ToBinary(unsigned num)
 {
 	string binaryNumberStr = "";
 	int binaryStringLength = 8 * sizeof(num);
@@ -20,7 +20,7 @@ void ToBinary(unsigned num)
 			binaryNumberStr = binaryNumberStr + "0";
 		}
 	}
-    cout << binaryNumberStr;
+    return binaryNumberStr;
 
 }
 
@@ -53,9 +53,10 @@ int main(int argc, char * argv[])
 	}
 	
     unsigned number = atoi(argv[1]);
-	
+	string binaryNumber;
+
 	cout << "Binary Number \n";
-	ToBinary(number);
-	cout << endl;
+	binaryNumber = ToBinary(number);
+	cout << binaryNumber << endl;
 	return 0;
 } 

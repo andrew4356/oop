@@ -21,6 +21,7 @@ string HtmlEncode(string const & currentStr)
 		case '<': buffer.append("&lt;"); break;
 		case '>': buffer.append("&gt;"); break;
 		default: buffer.append(&currentStr[i], 1); break;
+	    
 		}
 	}
 	
@@ -30,24 +31,12 @@ string HtmlEncode(string const & currentStr)
 int main()
 {
 
-	string currentStr = " ";
-
-	/*while (getline(input, currentStr))
-	{
-		for (int i = currentStr.length; i != 0; --i)
-		{
-			currentSTR.replace(currentStr.find("<"), 2, "&lt;");
-			currentSTR.replace(currentStr.find(">"), 2, "&gt;");
-			currentSTR.replace(currentStr.find("\'"), 2, "&apos;");
-			currentSTR.replace(currentStr.find("\""), 2, "&quot;");
-		}
-	}*/
-	string timeStr;
+	string currentStr;
 
 	while (getline(cin, currentStr))
 	{
-		currentStr.swap(HtmlEncode(currentStr));
-		cout << currentStr <<  endl;
+		
+		cout << HtmlEncode(currentStr) <<  endl;
 	}
 
 	return 0;

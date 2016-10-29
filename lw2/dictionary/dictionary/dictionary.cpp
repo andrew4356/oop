@@ -30,7 +30,7 @@ bool CheckСlosing(string const& word, map <string, string> & addingWordDicrionar
 			}
 			else
 			{
-				cout << "Изменения НЕ были сохранены" << endl;
+				cout << "Изменения не были сохранены" << endl;
 				return true;
 			}
 		}
@@ -43,7 +43,7 @@ bool CheckСlosing(string const& word, map <string, string> & addingWordDicrionar
 }
  
 
-string TranslationSearch(string const& word, map <string, string> dictionary, map <string, string> newWordsdictionary)
+string TranslationSearch(string const& word, map <string, string> & dictionary, map <string, string> & newWordsdictionary)
 {
 
 	for (auto i = dictionary.begin(); i != dictionary.end(); ++i)
@@ -68,9 +68,23 @@ string TranslationSearch(string const& word, map <string, string> dictionary, ma
 
 int main(int argc, char * argv[])
 {
+	if (argc != 2)
+	{
+		return 1;
+	}
+
+	ifstream input(argv[1]);
+
+	if (!input.is_open())
+	{
+		cout << "Failed to open " << argv[1] << " for reading\n";
+		return 1;
+	}
+
+
 	SetConsoleCP(1251);
 	SetConsoleOutputCP(1251);
-	ifstream input(argv[1]);
+	
 
 	map <string, string> dictionary;
 	map <string, string> addingWordDicrionary;
@@ -78,7 +92,7 @@ int main(int argc, char * argv[])
 
 	string firstWord = "";
 	string word = "";
-	string translateWord = "";
+	string translationWord = "";
 	string check = "";
 	string translate = "";
 
@@ -112,7 +126,7 @@ int main(int argc, char * argv[])
 			}
 			else
 			{
-				cout << "Слова нет в словрае. Введите перевод или пустую строку для отказа." << endl;
+				cout << "Слова нет в словаре. Введите перевод или пустую строку для отказа." << endl;
 				getline(cin, translate);
 				if (translate == "")
 				{

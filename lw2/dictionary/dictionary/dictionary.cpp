@@ -93,7 +93,7 @@ int main(int argc, char * argv[])
 	string firstWord = "";
 	string word = "";
 	string translationWord = "";
-	string check = "";
+	string check = ""; 
 	string translate = "";
 
 	while (getline(input, firstWord, '-') &&

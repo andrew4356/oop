@@ -28,7 +28,7 @@ set<uint32_t> GeneratePrimeNumbersSet(int upperBound)
 	vector<bool> numbers(upperBound + 1, false);
 	set<uint32_t> primes;
 
-	for (unsigned i = 1; i <= upperBound; i++)
+	for (int i = 1; i <= upperBound; i++)
 	{
 		numbers[i] = true;
 	}
@@ -38,18 +38,18 @@ set<uint32_t> GeneratePrimeNumbersSet(int upperBound)
 		primes.emplace_hint(primes.end(), 2);
 	}
 
-	for (unsigned i = 2; ((i*i) <= upperBound); i++)
+	for (int i = 2; ((i*i) <= upperBound); i++)
 	{
 		if (numbers[i])
 		{
-			for (unsigned j = (i*i); j <= upperBound; j += i)
+			for (int j = (i*i); j <= upperBound; j += i)
 			{
 				if (numbers[j]) numbers[j] = false;
 			}
 		}
 	}
 
-	for (unsigned i = 3; i <= upperBound; i += 2)
+	for (int i = 3; i <= upperBound; i += 2)
 	{
 		if (numbers[i])
 		{
@@ -67,13 +67,13 @@ int main(int argc, char * argv[])
 		return 1;
 	}
 
-	unsigned i = 0;
-	auto upperBound = atoi(argv[1]);
-	auto primes = GeneratePrimeNumbersSet(upperBound);
+	int i = 0;
+	int upperBound = atoi(argv[1]);
+	auto primesNumbers = GeneratePrimeNumbersSet(upperBound);
 
-	for (const auto prime : primes)
+	for (const auto primeNumber : primesNumbers)
 	{
-		cout << prime << endl;
+		cout << primeNumber << endl;
 		++i;
 	}
 	cout << "Total prime number in the range from 1 to " << upperBound << " : " << i << endl;

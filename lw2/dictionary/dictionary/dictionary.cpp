@@ -9,6 +9,18 @@
 
 using namespace std;
 
+
+bool CheckOnTheCorrectnessOfTheArguments(int argc)
+{
+	if (argc != 2)
+	{
+		cout << "Invalid arguments." << endl;
+		cout << "dictionary.exe <dictionary.txt>" << endl;
+		return true;
+	}
+	return false;
+}
+
 void SaveNewWordInDictionary(const map <string, string> addingWordDictionary, ofstream & input)
 {
 	for (auto i = addingWordDictionary.begin(); i != addingWordDictionary.end(); ++i)
@@ -29,11 +41,7 @@ bool Check—losing(string const& word, map <string, string> & addingWordDictionar
 			if (changes == "Y" || changes == "y"
 				|| changes == "Ì" || changes == "Õ")
 			{
-				/*SaveNewWordInDictionary(addingWordDictionary, input);*/
-				for (auto i = addingWordDictionary.begin(); i != addingWordDictionary.end(); ++i)
-				{
-					input << endl << i->first << '-' << i->second;
-				}
+				SaveNewWordInDictionary(addingWordDictionary, input);
 				cout << "»ÁÏÂÌÂÌËˇ ·˚ÎË ÒÓı‡ÌÂÌ˚" << endl;
 				return true;
 			}
@@ -112,7 +120,7 @@ void ProcessingDictionary(string const& word, map <string, string> & addingWordD
 
 int main(int argc, char * argv[])
 {
-	if (argc != 2)
+	if (CheckOnTheCorrectnessOfTheArguments(argc))
 	{
 		return 1;
 	}

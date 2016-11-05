@@ -9,19 +9,28 @@
 
 using namespace std;
 
-bool CheckСlosing(string const& word, map <string, string> & addingWordDicrionary, ofstream & input)
+void SaveNewWordInDictionary(const map <string, string> addingWordDictionary, ofstream & input)
 {
-	string changes = "";
+	for (auto i = addingWordDictionary.begin(); i != addingWordDictionary.end(); ++i)
+	{
+		input << endl << i->first << '-' << i->second;
+	}
+}
+
+bool CheckСlosing(string const& word, map <string, string> & addingWordDictionary, ofstream & input)
+{
+	string changes;
 	if (word == "...")
 	{
-		if (addingWordDicrionary.size() > 0)
+		if (addingWordDictionary.size() > 0)
 		{
 			cout << "В словарь были внесены изменения. Введите Y или y для сохранения перед выходом" << endl;
 			cin >> changes;
 			if (changes == "Y" || changes == "y"
 				|| changes == "н" || changes == "Н")
 			{
-				for (auto i = addingWordDicrionary.begin(); i != addingWordDicrionary.end(); ++i)
+				/*SaveNewWordInDictionary(addingWordDictionary, input);*/
+				for (auto i = addingWordDictionary.begin(); i != addingWordDictionary.end(); ++i)
 				{
 					input << endl << i->first << '-' << i->second;
 				}
@@ -43,8 +52,12 @@ bool CheckСlosing(string const& word, map <string, string> & addingWordDicrionar
 }
  
 
-string TranslationSearch(string const& word, map <string, string> & dictionary, map <string, string> & newWordsdictionary)
+string TranslationSearch(string const& word, map <string, string> & dictionary, map <string, string> & addingWordDictionary)
 {
+
+	map <string, string>::iterator i;
+
+	i = dictionary.find(word);
 
 	for (auto i = dictionary.begin(); i != dictionary.end(); ++i)
 	{
@@ -54,7 +67,7 @@ string TranslationSearch(string const& word, map <string, string> & dictionary, 
 		}
 	}
 
-	for (auto i = newWordsdictionary.begin(); i != newWordsdictionary.end(); ++i)
+	for (auto i = addingWordDictionary.begin(); i != addingWordDictionary.end(); ++i)
 	{
 		if (i->first == word)
 		{
@@ -63,6 +76,37 @@ string TranslationSearch(string const& word, map <string, string> & dictionary, 
 	}
 
 	return "";
+}
+
+
+void ProcessingDictionary(string const& word, map <string, string> & addingWordDictionary, map <string, string> dictionary)
+{
+	string foundWord;
+
+	foundWord = TranslationSearch(word, dictionary, addingWordDictionary);
+
+	string translate;
+
+	if (foundWord != "")
+	{
+		cout << foundWord << endl;
+	}
+	else
+	{
+		cout << "Слова нет в словаре. Введите перевод или пустую строку для отказа." << endl;
+		getline(cin, translate);
+		if (translate == "")
+		{
+			cout << "Слово '" << word << "' не будет записано" << endl;
+		}
+		else
+		{
+			map <string, string> temporaryDictionary;
+			temporaryDictionary.insert(pair<string, string>(word, translate));
+			addingWordDictionary = temporaryDictionary;
+			cout << "Слово '" << word << "' сохранено в словаре как '" << translate << "'." << endl;
+		}
+	}
 }
 
 
@@ -87,14 +131,14 @@ int main(int argc, char * argv[])
 	
 
 	map <string, string> dictionary;
-	map <string, string> addingWordDicrionary;
+	map <string, string> addingWordDictionary;
 
 
-	string firstWord = "";
-	string word = "";
-	string translationWord = "";
-	string check = ""; 
-	string translate = "";
+	string firstWord;
+	string word;
+	string translationWord;
+	string check; 
+	string translate;
 
 	while (getline(input, firstWord, '-') &&
 		   getline(input, translate, '\n'))
@@ -108,38 +152,13 @@ int main(int argc, char * argv[])
 
 		getline(cin, word);
 		ofstream input(argv[1], ofstream::app);
-		if (CheckСlosing(word, addingWordDicrionary, input))
+		if (CheckСlosing(word, addingWordDictionary, input))
 		{
 			break;
 		}
 		else
 		{
-			string foundWord;
-
-			foundWord = TranslationSearch(word, dictionary, addingWordDicrionary);
-		
-			string translate;
-			
-			if (foundWord != "")
-			{
-				cout << foundWord << endl;
-			}
-			else
-			{
-				cout << "Слова нет в словаре. Введите перевод или пустую строку для отказа." << endl;
-				getline(cin, translate);
-				if (translate == "")
-				{
-					cout << "Слово '" << word << "' не будет записано" << endl;
-				}
-				else
-				{
-					map <string, string> temporaryDictionary;
-					temporaryDictionary.insert(pair<string, string>(word, translate));
-					addingWordDicrionary = temporaryDictionary;
-					cout << "Слово '" << word << "' сохранено в словаре как '" << translate << "'." << endl;
-				}
-			}
+			ProcessingDictionary(word, addingWordDictionary, dictionary);
 		}
 	}
 

@@ -13,25 +13,24 @@ bool CheckOnTheCorrectnessOfTheArguments(int argc, char* argv)
 		return true;
 	}
 
-	if (atoi(argv) < 0)
+	if (atoi(argv) <= 0)
 	{
 		cout << "Invalid arguments." << endl;
-		cout << "Numbers must be > 0" << endl;
+		cout << "The number must be licking in the range from 1 to 100000000" << endl;
 		return true;
 	}
+
+	
 
 	return false;
 }
 
 set<uint32_t> GeneratePrimeNumbersSet(int upperBound)
 {
-	vector<bool> numbers(upperBound + 1, false);
+	vector<bool> numbers(upperBound + 1, true);
 	set<uint32_t> primes;
 
-	for (int i = 1; i <= upperBound; i++)
-	{
-		numbers[i] = true;
-	}
+	numbers[1] = true;
 
 	if (upperBound > 1)
 	{
@@ -44,7 +43,7 @@ set<uint32_t> GeneratePrimeNumbersSet(int upperBound)
 		{
 			for (int j = (i*i); j <= upperBound; j += i)
 			{
-				if (numbers[j]) numbers[j] = false;
+				 numbers[j] = false;
 			}
 		}
 	}
@@ -67,15 +66,13 @@ int main(int argc, char * argv[])
 		return 1;
 	}
 
-	int i = 0;
 	int upperBound = atoi(argv[1]);
 	auto primesNumbers = GeneratePrimeNumbersSet(upperBound);
 
 	for (const auto primeNumber : primesNumbers)
 	{
 		cout << primeNumber << endl;
-		++i;
 	}
-	cout << "Total prime number in the range from 1 to " << upperBound << " : " << i << endl;
+	cout << "Total prime number in the range from 1 to " << upperBound << " : " << primesNumbers.size() << endl;
 	return 0;
 }

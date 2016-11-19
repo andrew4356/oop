@@ -22,7 +22,7 @@ bool CheckOnTheCorrectnessOfTheArguments(int argc)
 	return false;
 }
 
-void SaveNewWordInDictionary(const map <string, string> addingWordDictionary, ofstream & input)
+void SaveNewWordInDictionary(const map <string, string>& addingWordDictionary, ofstream & input)
 {
 	for (auto i = addingWordDictionary.begin(); i != addingWordDictionary.end(); ++i)
 	{

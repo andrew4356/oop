@@ -16,7 +16,7 @@ bool CheckOnTheCorrectnessOfTheArguments(int argc, char* argv)
 	if (atoi(argv) <= 0)
 	{
 		cout << "Invalid arguments." << endl;
-		cout << "The number must be a range from 1 to 100000000" << endl;
+		cout << "The number must be within a range from 1 to 100000000" << endl;
 		return true;
 	}
 

@@ -6,13 +6,14 @@
 #include <sstream>
 #include <fstream>
 #include <wincon.h>
+#include <cstdio>
 
 using namespace std;
 
 
 bool CheckOnTheCorrectnessOfTheArguments(int argc)
 {
-	if (argc != 2)
+	if (argc != 1)
 	{
 		cout << "Invalid arguments." << endl;
 		cout << "dictionary.exe <dictionary.txt>" << endl;
@@ -120,9 +121,10 @@ void ProcessingDictionary(string const& word, map <string, string> & addingWordD
 
 int main(int argc, char * argv[])
 {
-	if (CheckOnTheCorrectnessOfTheArguments(argc))
+	if (argc == 1)
 	{
-		return 1;
+		ofstream in("dictionary.txt", ofstream::out);
+		argv[1] = "dictionary.txt";
 	}
 
 	ifstream input(argv[1]);
@@ -145,7 +147,6 @@ int main(int argc, char * argv[])
 	string firstWord;
 	string word;
 	string translationWord;
-	string check; 
 	string translate;
 
 	while (getline(input, firstWord, '-') &&

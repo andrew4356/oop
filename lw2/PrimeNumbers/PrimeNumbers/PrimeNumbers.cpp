@@ -30,7 +30,7 @@ set<uint32_t> GeneratePrimeNumbersSet(int upperBound)
 	vector<bool> numbers(upperBound + 1, true);
 	set<uint32_t> primes;
 
-	numbers[1] = true;
+	numbers[1] = false;
 
 	if (upperBound > 1)
 	{
@@ -67,12 +67,12 @@ int main(int argc, char * argv[])
 	}
 
 	int upperBound = atoi(argv[1]);
-	auto primesNumbers = GeneratePrimeNumbersSet(upperBound);
+	auto primeNumbers = GeneratePrimeNumbersSet(upperBound);
 
-	for (const auto primeNumber : primesNumbers)
+	for (const auto primeNumber : primeNumbers)
 	{
 		cout << primeNumber << endl;
 	}
-	cout << "Total prime number in the range from 1 to " << upperBound << " : " << primesNumbers.size() << endl;
+	cout << "Total prime number in the range from 1 to " << upperBound << " : " << primeNumbers.size() << endl;
 	return 0;
 }

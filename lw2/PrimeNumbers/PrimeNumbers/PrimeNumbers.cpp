@@ -5,7 +5,7 @@ using namespace std;
 
 int main(int argc, char * argv[])
 {
-	if (CheckOnTheCorrectnessOfTheArguments(argc, argv[1]))
+	if (CheckOnTheCorrectnessOfTheArguments(argc, argv))
 	{
 		return 1;
 	}

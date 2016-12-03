@@ -157,10 +157,12 @@
     <Text Include="ReadMe.txt" />
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="..\PrimeNumbers\UnitForPrimeNumbers.h" />
     <ClInclude Include="stdafx.h" />
     <ClInclude Include="targetver.h" />
   </ItemGroup>
   <ItemGroup>
+    <ClCompile Include="..\PrimeNumbers\UnitForPrimeNumbers.cpp" />
     <ClCompile Include="main.cpp" />
     <ClCompile Include="PrimeNumbers_tests.cpp" />
     <ClCompile Include="stdafx.cpp">

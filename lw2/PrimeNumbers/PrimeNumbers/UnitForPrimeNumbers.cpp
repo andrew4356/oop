@@ -2,7 +2,7 @@
 
 using namespace std;
  
-bool CheckOnTheCorrectnessOfTheArguments(int argc, char* argv)
+bool CheckOnTheCorrectnessOfTheArguments(int argc, char * argv[])
 {
 	if (argc != 2)
 	{   
@@ -11,25 +11,26 @@ bool CheckOnTheCorrectnessOfTheArguments(int argc, char* argv)
 		return true;
 	}
 
-	if (atoi(argv) <= 0)
+	if (atoi(argv[1]) < 0)
 	{
 		string erorr = "Invalid arguments. \nThe number must be within a range from 1 to 100000000";
 		cout << erorr << endl;
 		return true;
 	}
 
-
-
 	return false;
 }
 
 set<uint32_t> GeneratePrimeNumbersSet(int upperBound)
 {
-	vector<bool> nums(upperBound + 1, true); // locationPrimes
+	vector<bool> sieve(upperBound + 1, true); 
 	set<uint32_t> primes;
 
-    nums[1] = false;
 
+	if (upperBound < 1)
+	{
+		return primes;
+	}
 	if (upperBound > 1)
 	{
 		primes.emplace_hint(primes.end(), 2);
@@ -37,18 +38,18 @@ set<uint32_t> GeneratePrimeNumbersSet(int upperBound)
 
 	for (int i = 2; (i * i <= upperBound); i++)
 	{
-		if (nums[i])
+		if (sieve[i])
 		{
 			for (int j = i * i; j <= upperBound; j += 2 * i)
 			{
-				nums[j] = false;
+				sieve[j] = false;
 			}
 		}
 	}
 
 	for (int i = 3; i <= upperBound; i += 2)
 	{
-		if (nums[i])
+		if (sieve[i])
 		{
 			primes.emplace_hint(primes.end(), i);
 		}

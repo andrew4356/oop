@@ -2,97 +2,101 @@
 //
 //
 #include "stdafx.h"
-
-#include "../PrimeNumbers/UnitForPrimeNumbers.cpp"
+#include "../PrimeNumbers/UnitForPrimeNumbers.h"
 
 BOOST_AUTO_TEST_SUITE(Test)
 
-BOOST_AUTO_TEST_CASE(primes_count)
+BOOST_AUTO_TEST_CASE(count_prime_numbers_to_0)
 {
-	{
-		const auto expectedResult = true;
-		char * ch[2];
-		ch[1] = "0";
-		auto test = CheckOnTheCorrectnessOfTheArguments(2, ch[1]);
-		BOOST_CHECK(test == expectedResult);
-	}
-
-	{
-		const auto expectedResult = false;
-		char * ch[2];
-		ch[1] = "1";
-		auto test = CheckOnTheCorrectnessOfTheArguments(2, ch[1]);
-		BOOST_CHECK(test == expectedResult);
-	}
-	
-	{
-		const auto expectedResult = 0;
-		auto primes = GeneratePrimeNumbersSet(1);
-		BOOST_CHECK(primes.size() == expectedResult);
-	}
-
-	{
-		const auto expectedResult = 1;
-		auto primes = GeneratePrimeNumbersSet(2);
-		BOOST_CHECK(primes.size() == expectedResult);
-	}
-
-	{
-		const auto expectedResult = 2;
-		auto primes = GeneratePrimeNumbersSet(3);
-		BOOST_CHECK(primes.size() == expectedResult);
-	}
-
-	{
-		const auto expectedResult = 4;
-		auto primes = GeneratePrimeNumbersSet(10);
-		BOOST_CHECK(primes.size() == expectedResult);
-	}
-
-	{
-		const auto expectedResult = 25;
-		auto primes = GeneratePrimeNumbersSet(100);
-		BOOST_CHECK(primes.size() == expectedResult);
-	}
-
-#ifdef NDEBUG
-	{
-		const auto expectedResult = 5'761'455;
-		auto primes = GeneratePrimeNumbersSet(100'000'000);
-		BOOST_CHECK(primes.size() == expectedResult);
-	}
-#endif
+	const auto expectedResult = 0;
+	auto primes = GeneratePrimeNumbersSet(0);
+	BOOST_CHECK(primes.size() == expectedResult);
 }
 
-BOOST_AUTO_TEST_CASE(compare_sets)
+BOOST_AUTO_TEST_CASE(count_prime_numbers_to_1)
 {
-	{
-		const std::set<uint32_t> expectedResult = {
-			2, 3, 5, 7
-		};
-		const auto primes = GeneratePrimeNumbersSet(10);
-		BOOST_CHECK(primes == expectedResult);
-	}
+	const auto expectedResult = 0;
+	auto primes = GeneratePrimeNumbersSet(1);
+	BOOST_CHECK(primes.size() == expectedResult);
+}
 
-	{
-		const std::set<uint32_t> expectedResult = {
-			2, 3, 5, 7, 11
-		};
-		const auto primes = GeneratePrimeNumbersSet(12);
-		BOOST_CHECK(primes == expectedResult);
-	}
+BOOST_AUTO_TEST_CASE(count_prime_numbers_to_2)
+{
+	const auto expectedResult = 1;
+	auto primes = GeneratePrimeNumbersSet(2);
+	BOOST_CHECK(primes.size() == expectedResult);
+}
 
-	{
-		const std::set<uint32_t> expectedResult = { 2 };
-		const auto primes = GeneratePrimeNumbersSet(2);
-		BOOST_CHECK(primes == expectedResult);
-	}
+BOOST_AUTO_TEST_CASE(count_prime_numbers_to_3)
+{
+	const auto expectedResult = 2;
+	auto primes = GeneratePrimeNumbersSet(3);
+	BOOST_CHECK(primes.size() == expectedResult);
+}
 
-	{
-		const std::set<uint32_t> expectedResult = {};
-		const auto primes = GeneratePrimeNumbersSet(1);
-		BOOST_CHECK(primes == expectedResult);
-	}
+BOOST_AUTO_TEST_CASE(count_prime_numbers_to_10)
+{
+	const auto expectedResult = 4;
+	auto primes = GeneratePrimeNumbersSet(10);
+	BOOST_CHECK(primes.size() == expectedResult);
+}
+
+BOOST_AUTO_TEST_CASE(count_prime_numbers_to_100)
+{
+	const auto expectedResult = 25;
+	auto primes = GeneratePrimeNumbersSet(100);
+	BOOST_CHECK(primes.size() == expectedResult);
+}
+
+BOOST_AUTO_TEST_CASE(count_prime_numbers_to_100000)
+{
+	const auto expectedResult = 9592;
+	auto primes = GeneratePrimeNumbersSet(100000);
+	BOOST_CHECK(primes.size() == expectedResult);
+
+}
+
+BOOST_AUTO_TEST_CASE(compare_sets_to_1)
+{
+	const std::set<uint32_t> expectedResult = {};
+	const auto primes = GeneratePrimeNumbersSet(1);
+	BOOST_CHECK(primes == expectedResult);
+}
+
+BOOST_AUTO_TEST_CASE(compare_sets_to_2)
+{
+	const std::set<uint32_t> expectedResult = { 2 };
+	const auto primes = GeneratePrimeNumbersSet(2);
+	BOOST_CHECK(primes == expectedResult);
+}
+
+BOOST_AUTO_TEST_CASE(compare_sets_to_10)
+{
+	const std::set<uint32_t> expectedResult = {
+		2, 3, 5, 7
+	};
+	const auto primes = GeneratePrimeNumbersSet(10);
+	BOOST_CHECK(primes == expectedResult);
+}
+
+BOOST_AUTO_TEST_CASE(compare_sets_to_12)
+{
+	const std::set<uint32_t> expectedResult = {
+		2, 3, 5, 7, 11
+	};
+	const auto primes = GeneratePrimeNumbersSet(12);
+	BOOST_CHECK(primes == expectedResult);
+}
+
+BOOST_AUTO_TEST_CASE(compare_sets_to_100)
+{
+	const std::set<uint32_t> expectedResult = {
+		2, 3, 5, 7, 11, 13, 17, 19, 23, 29, 31,
+		37, 41, 43, 47, 53, 59, 61, 67, 71, 73,
+		79, 83, 89, 97
+	};
+	const auto primes = GeneratePrimeNumbersSet(100);
+	BOOST_CHECK(primes == expectedResult);
 }
 
 BOOST_AUTO_TEST_SUITE_END()

@@ -7,9 +7,12 @@
 
 #include "targetver.h"
 
-#include <stdio.h>
-#include <tchar.h>
-
+#include <set>
+#include <vector>
+#include <iostream>
+#include <string>
+#include <algorithm>
+#include <cctype>
 //#define BOOST_TEST_MODULE MyTest
 #define BOOST_TEST_INCLUDED 
  

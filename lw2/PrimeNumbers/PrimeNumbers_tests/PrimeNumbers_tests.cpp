@@ -4,7 +4,7 @@
 #include "stdafx.h"
 #include "../PrimeNumbers/UnitForPrimeNumbers.h"
 
-BOOST_AUTO_TEST_SUITE(Test)
+BOOST_AUTO_TEST_SUITE(GeneratePrimeNumbersSet_function)
 
 BOOST_AUTO_TEST_CASE(count_prime_numbers_to_0) 
 {

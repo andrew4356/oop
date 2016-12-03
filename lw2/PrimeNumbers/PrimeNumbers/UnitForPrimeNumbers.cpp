@@ -26,7 +26,6 @@ set<uint32_t> GeneratePrimeNumbersSet(int upperBound)
 	vector<bool> sieve(upperBound + 1, true); 
 	set<uint32_t> primes;
 
-
 	if (upperBound < 1)
 	{
 		return primes;
@@ -42,9 +41,9 @@ set<uint32_t> GeneratePrimeNumbersSet(int upperBound)
 		{
 			for (int j = i * i; j <= upperBound; j += 2 * i)
 			{
-				sieve[j] = false;
+				sieve[j] = false; 
 			}
-		}
+		}  
 	}
 
 	for (int i = 3; i <= upperBound; i += 2)

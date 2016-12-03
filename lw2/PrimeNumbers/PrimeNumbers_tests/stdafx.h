@@ -11,7 +11,7 @@
 #include <vector>
 #include <iostream>
 #include <string>
-#include <algorithm>
+#include <algorithm> 
 #include <cctype>
 //#define BOOST_TEST_MODULE MyTest
 #define BOOST_TEST_INCLUDED 

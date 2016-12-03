@@ -6,12 +6,12 @@
 
 BOOST_AUTO_TEST_SUITE(Test)
 
-BOOST_AUTO_TEST_CASE(count_prime_numbers_to_0)
+BOOST_AUTO_TEST_CASE(count_prime_numbers_to_0) 
 {
 	const auto expectedResult = 0;
 	auto primes = GeneratePrimeNumbersSet(0);
 	BOOST_CHECK(primes.size() == expectedResult);
-}
+} 
 
 BOOST_AUTO_TEST_CASE(count_prime_numbers_to_1)
 {

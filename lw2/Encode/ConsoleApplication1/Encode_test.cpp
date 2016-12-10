@@ -20,7 +20,7 @@ BOOST_AUTO_TEST_SUITE(HtmlEncode_function)
 		BOOST_CHECK(encode == expectedResult);
 	}
 
-	BOOST_AUTO_TEST_CASE(replacement_the_symbol_quot)
+	BOOST_AUTO_TEST_CASE(replacement_the_symbol_quote)
 	{
 		const string expectedResult = "&quot;";
 		string symbol = "\"";
